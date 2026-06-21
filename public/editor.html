@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Editor</title>
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <h2>📝 文档</h2>
+        <button id="newDocBtn" class="btn btn-primary" title="新建文档">+ 新建</button>
+      </div>
+      <div class="sidebar-search">
+        <input type="text" id="searchInput" placeholder="🔍 搜索文档..." />
+      </div>
+      <div id="docList" class="doc-list"></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="toolbar">
+        <div class="toolbar-left">
+          <button id="toggleSidebar" class="btn-icon" title="切换侧边栏">☰</button>
+          <input type="text" id="docTitle" class="doc-title" placeholder="无标题文档" />
+        </div>
+        <div class="toolbar-center">
+          <div class="format-toolbar">
+            <button data-action="bold" class="btn-format" title="粗体 (Ctrl+B)"><strong>B</strong></button>
+            <button data-action="italic" class="btn-format" title="斜体 (Ctrl+I)"><em>I</em></button>
+            <button data-action="strikethrough" class="btn-format" title="删除线"><s>S</s></button>
+            <span class="divider"></span>
+            <button data-action="h1" class="btn-format" title="一级标题">H1</button>
+            <button data-action="h2" class="btn-format" title="二级标题">H2</button>
+            <button data-action="h3" class="btn-format" title="三级标题">H3</button>
+            <span class="divider"></span>
+            <button data-action="link" class="btn-format" title="链接">🔗</button>
+            <button data-action="image" class="btn-format" title="图片">🖼️</button>
+            <span class="divider"></span>
+            <button data-action="code" class="btn-format" title="行内代码">&lt;/&gt;</button>
+            <button data-action="codeblock" class="btn-format" title="代码块">```</button>
+            <button data-action="quote" class="btn-format" title="引用">❝</button>
+            <span class="divider"></span>
+            <button data-action="table" class="btn-format" title="表格">📊</button>
+            <button data-action="ul" class="btn-format" title="无序列表">• 列表</button>
+            <button data-action="ol" class="btn-format" title="有序列表">1. 列表</button>
+            <button data-action="task" class="btn-format" title="任务列表">☑️</button>
+          </div>
+        </div>
+        <div class="toolbar-right">
+          <select id="themeSelect" class="theme-select" title="主题切换">
+            <option value="light">☀️ 浅色</option>
+            <option value="dark">🌙 深色</option>
+            <option value="eye">👁️ 护眼</option>
+          </select>
+          <button id="exportMd" class="btn btn-secondary" title="导出 Markdown">📄 .md</button>
+          <button id="exportHtml" class="btn btn-secondary" title="导出 HTML">🌐 .html</button>
+          <button id="openPreview" class="btn btn-primary" title="打开预览页">👁️ 预览</button>
+        </div>
+      </header>
+
+      <div class="editor-container">
+        <div class="editor-pane">
+          <div class="pane-header">
+            <span>📝 编辑</span>
+            <span id="saveStatus" class="save-status">已保存</span>
+          </div>
+          <textarea id="editor" class="editor" spellcheck="false" placeholder="在这里输入 Markdown..."></textarea>
+        </div>
+        <div class="preview-pane">
+          <div class="pane-header">
+            <span>👁️ 预览</span>
+          </div>
+          <div id="preview" class="preview"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="renameModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>重命名文档</h3>
+      <input type="text" id="renameInput" placeholder="输入新名称..." />
+      <div class="modal-actions">
+        <button id="cancelRename" class="btn btn-secondary">取消</button>
+        <button id="confirmRename" class="btn btn-primary">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="confirmTitle">确认操作</h3>
+      <p id="confirmMessage">确定要执行此操作吗？</p>
+      <div class="modal-actions">
+        <button id="cancelConfirm" class="btn btn-secondary">取消</button>
+        <button id="okConfirm" class="btn btn-danger">确定</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+@import 'variables';
+@import 'reset';
+
+.theme-light {
+  --bg-color: #{$light-bg};
+  --text-color: #{$light-text};
+  --border-color: #{$light-border};
+  --preview-bg: #{$light-preview-bg};
+}
+
+.theme-dark {
+  --bg-color: #{$dark-bg};
+  --text-color: #{$dark-text};
+  --border-color: #{$dark-border};
+  --preview-bg: #{$dark-preview-bg};
+}
+
+.theme-eye {
+  --bg-color: #{$eye-bg};
+  --text-color: #{$eye-text};
+  --border-color: #{$eye-border};
+  --preview-bg: #{$eye-preview-bg};
+}
+
+#previewApp {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: $transition-base;
+}
