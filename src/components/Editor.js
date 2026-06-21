@@ -173,12 +173,6 @@ export class Editor {
       case 'quote':
         this.insertLine('> ');
         break;
-      case 'link':
-        this.wrapText('[', '](url)');
-        break;
-      case 'image':
-        this.insertText('![图片描述](url)');
-        break;
       case 'table':
         this.insertText('\n| 列1 | 列2 | 列3 |\n|-----|-----|-----|\n| 内容 | 内容 | 内容 |\n');
         break;
@@ -194,6 +188,20 @@ export class Editor {
       default:
         break;
     }
+  }
+
+  insertLink(text, url) {
+    if (!url) return;
+    const linkText = text || url;
+    const markdown = `[${linkText}](${url})`;
+    this.insertText(markdown);
+  }
+
+  insertImage(alt, url) {
+    if (!url) return;
+    const altText = alt || '图片';
+    const markdown = `![${altText}](${url})`;
+    this.insertText(markdown);
   }
 
   getScrollPercentage() {

@@ -5,7 +5,7 @@ export class Preview {
     this.container = container;
     this.previewElement = null;
     this.content = '';
-    
+
     this.init();
   }
 
@@ -14,9 +14,10 @@ export class Preview {
     if (!this.previewElement) {
       this.previewElement = document.createElement('div');
       this.previewElement.id = 'preview';
-      this.previewElement.className = 'preview markdown-body';
       this.container.appendChild(this.previewElement);
     }
+    this.previewElement.classList.add('preview');
+    this.previewElement.classList.add('markdown-body');
   }
 
   render(markdown) {

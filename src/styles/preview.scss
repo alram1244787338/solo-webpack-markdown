@@ -6,6 +6,8 @@
   --text-color: #{$light-text};
   --border-color: #{$light-border};
   --preview-bg: #{$light-preview-bg};
+  --toolbar-bg: #{$light-bg};
+  --hover-bg: #f0f0f0;
 }
 
 .theme-dark {
@@ -13,6 +15,8 @@
   --text-color: #{$dark-text};
   --border-color: #{$dark-border};
   --preview-bg: #{$dark-preview-bg};
+  --toolbar-bg: #{$dark-bg};
+  --hover-bg: #3c3c3c;
 }
 
 .theme-eye {
@@ -20,13 +24,109 @@
   --text-color: #{$eye-text};
   --border-color: #{$eye-border};
   --preview-bg: #{$eye-preview-bg};
+  --toolbar-bg: #{$eye-bg};
+  --hover-bg: #d8d8c0;
 }
 
 #previewApp {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: $transition-base;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--toolbar-bg);
+  flex-shrink: 0;
+
+  h1 {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 60%;
+  }
+
+  .preview-actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  .theme-select {
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius-sm;
+    font-size: $font-size-sm;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+  }
+
+  .btn {
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    cursor: pointer;
+    transition: $transition-base;
+
+    &.btn-primary {
+      background-color: $primary-color;
+      color: white;
+      border: none;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+.preview-content {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--preview-bg);
+
+  .markdown-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: $spacing-lg;
+  }
+}
+
+.preview-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: var(--text-color);
+  padding: $spacing-xl;
+
+  .preview-empty-icon {
+    font-size: 64px;
+    margin-bottom: $spacing-md;
+    opacity: 0.5;
+  }
+
+  p {
+    opacity: 0.7;
+    margin: $spacing-xs 0;
+  }
+
+  .preview-empty-hint {
+    font-size: $font-size-sm;
+    opacity: 0.5;
+  }
 }

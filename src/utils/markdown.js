@@ -3,24 +3,34 @@ import hljs from 'highlight.js';
 import DOMPurify from 'dompurify';
 
 marked.setOptions({
-  highlight: function (code, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(code, { language: lang }).value;
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    return hljs.highlightAuto(code).value;
-  },
   breaks: true,
   gfm: true,
 });
 
+function highlightCodeBlocks(container) {
+  container.querySelectorAll('pre code').forEach((block) => {
+    if (block.dataset.highlighted) return;
+    block.classList.add('hljs');
+    try {
+      hljs.highlightElement(block);
+    } catch (err) {
+      console.error('Highlight error:', err);
+    }
+    block.dataset.highlighted = 'yes';
+  });
+  return container;
+}
+
 export function parseMarkdown(markdown) {
   if (!markdown) return '';
   const html = marked.parse(markdown);
-  return DOMPurify.sanitize(html);
+  const sanitized = DOMPurify.sanitize(html);
+
+  const container = document.createElement('div');
+  container.innerHTML = sanitized;
+  highlightCodeBlocks(container);
+
+  return container.innerHTML;
 }
 
 export function getPlainText(markdown) {
@@ -31,7 +41,8 @@ export function getPlainText(markdown) {
 export function generateHtmlDocument(markdown, title = 'Markdown Document', theme = 'light') {
   const content = parseMarkdown(markdown);
   const themeStyles = getThemeStyles(theme);
-  
+  const hljsTheme = theme === 'dark' ? 'github-dark.min.css' : 'github.min.css';
+
   return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -41,7 +52,7 @@ export function generateHtmlDocument(markdown, title = 'Markdown Document', them
   <style>
     ${themeStyles}
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/${hljsTheme}">
 </head>
 <body class="theme-${theme}">
   <div class="markdown-body">

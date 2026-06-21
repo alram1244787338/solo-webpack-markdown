@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'highlight';
 
 .markdown-body {
   font-family: $font-family-base;
@@ -78,7 +79,7 @@
     border-radius: $border-radius-sm;
     font-family: $font-family-mono;
     font-size: 85%;
-    background-color: var(--preview-bg);
+    background-color: var(--code-bg);
   }
 
   pre {
@@ -89,8 +90,8 @@
     font-family: $font-family-mono;
     font-size: 13px;
     line-height: 1.45;
-    background-color: var(--preview-bg);
-    border: 1px solid var(--border-color);
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
   }
 
   pre code {

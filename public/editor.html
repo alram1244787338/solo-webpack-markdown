@@ -6,7 +6,7 @@
   <title>Markdown Editor</title>
 </head>
 <body>
-  <div id="app">
+  <div id="app" class="theme-light">
     <aside id="sidebar" class="sidebar">
       <div class="sidebar-header">
         <h2>📝 文档</h2>
@@ -16,6 +16,11 @@
         <input type="text" id="searchInput" placeholder="🔍 搜索文档..." />
       </div>
       <div id="docList" class="doc-list"></div>
+      <div id="docEmptyState" class="doc-empty-state hidden">
+        <div class="doc-empty-icon">📭</div>
+        <p class="doc-empty-text">还没有文档</p>
+        <button class="btn btn-primary doc-empty-btn" id="emptyNewDocBtn">+ 新建文档</button>
+      </div>
     </aside>
 
     <main class="main-content">
@@ -65,7 +70,14 @@
             <span>📝 编辑</span>
             <span id="saveStatus" class="save-status">已保存</span>
           </div>
-          <textarea id="editor" class="editor" spellcheck="false" placeholder="在这里输入 Markdown..."></textarea>
+          <div class="editor-wrapper">
+            <textarea id="editor" class="editor" spellcheck="false" placeholder="在这里输入 Markdown..."></textarea>
+            <div id="editorEmptyState" class="editor-empty-state hidden">
+              <div class="editor-empty-icon">📝</div>
+              <p class="editor-empty-text">没有打开的文档</p>
+              <p class="editor-empty-hint">点击左侧"+ 新建"创建一个文档</p>
+            </div>
+          </div>
         </div>
         <div class="preview-pane">
           <div class="pane-header">
@@ -80,6 +92,7 @@
   <div id="renameModal" class="modal hidden">
     <div class="modal-content">
       <h3>重命名文档</h3>
+      <p class="prompt-message"></p>
       <input type="text" id="renameInput" placeholder="输入新名称..." />
       <div class="modal-actions">
         <button id="cancelRename" class="btn btn-secondary">取消</button>

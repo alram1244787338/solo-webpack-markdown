@@ -2,6 +2,7 @@ export class Toolbar {
   constructor(container, options = {}) {
     this.container = container;
     this.onFormat = options.onFormat || (() => {});
+    this.onTitleChange = options.onTitleChange || (() => {});
     this.onThemeChange = options.onThemeChange || (() => {});
     this.onExportMd = options.onExportMd || (() => {});
     this.onExportHtml = options.onExportHtml || (() => {});
@@ -30,10 +31,8 @@ export class Toolbar {
   bindEvents() {
     this.toggleSidebarBtn.addEventListener('click', () => this.onToggleSidebar());
     
-    this.docTitleInput.addEventListener('change', (e) => {
-      if (this.onTitleChange) {
-        this.onTitleChange(e.target.value);
-      }
+    this.docTitleInput.addEventListener('input', (e) => {
+      this.onTitleChange(e.target.value);
     });
     
     this.formatButtons.forEach(btn => {

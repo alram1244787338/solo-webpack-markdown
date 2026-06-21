@@ -1,0 +1,154 @@
+@import 'variables';
+
+.markdown-body {
+  --code-bg: #f6f8fa;
+  --code-text: #24292e;
+  --code-border: #e1e4e8;
+  --tok-keyword: #d73a49;
+  --tok-title: #6f42c1;
+  --tok-constant: #005cc5;
+  --tok-string: #032f62;
+  --tok-built-in: #e36209;
+  --tok-comment: #6a737d;
+  --tok-tag: #22863a;
+  --tok-section: #005cc5;
+  --tok-bullet: #735c0f;
+
+  pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+  }
+
+  pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    background: transparent;
+  }
+
+  code.hljs {
+    padding: 0.2em 0.4em;
+  }
+
+  .hljs {
+    color: var(--code-text);
+    background: transparent;
+  }
+
+  .hljs-doctag,
+  .hljs-keyword,
+  .hljs-meta .hljs-keyword,
+  .hljs-template-tag,
+  .hljs-template-variable,
+  .hljs-type,
+  .hljs-variable.language_ {
+    color: var(--tok-keyword);
+  }
+
+  .hljs-title,
+  .hljs-title.class_,
+  .hljs-title.class_.inherited__,
+  .hljs-title.function_ {
+    color: var(--tok-title);
+  }
+
+  .hljs-attr,
+  .hljs-attribute,
+  .hljs-literal,
+  .hljs-meta,
+  .hljs-number,
+  .hljs-operator,
+  .hljs-variable,
+  .hljs-selector-attr,
+  .hljs-selector-class,
+  .hljs-selector-id {
+    color: var(--tok-constant);
+  }
+
+  .hljs-regexp,
+  .hljs-string,
+  .hljs-meta .hljs-string {
+    color: var(--tok-string);
+  }
+
+  .hljs-built_in,
+  .hljs-symbol {
+    color: var(--tok-built-in);
+  }
+
+  .hljs-comment,
+  .hljs-code,
+  .hljs-formula {
+    color: var(--tok-comment);
+  }
+
+  .hljs-name,
+  .hljs-quote,
+  .hljs-selector-tag,
+  .hljs-selector-pseudo {
+    color: var(--tok-tag);
+  }
+
+  .hljs-subst {
+    color: var(--code-text);
+  }
+
+  .hljs-section {
+    color: var(--tok-section);
+    font-weight: bold;
+  }
+
+  .hljs-bullet {
+    color: var(--tok-bullet);
+  }
+
+  .hljs-emphasis {
+    color: var(--code-text);
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    color: var(--code-text);
+    font-weight: bold;
+  }
+
+  .hljs-addition {
+    color: var(--tok-tag);
+    background-color: rgba(40, 167, 69, 0.1);
+  }
+
+  .hljs-deletion {
+    color: var(--tok-keyword);
+    background-color: rgba(220, 53, 69, 0.1);
+  }
+}
+
+.theme-dark .markdown-body {
+  --code-bg: #161b22;
+  --code-text: #c9d1d9;
+  --code-border: #30363d;
+  --tok-keyword: #ff7b72;
+  --tok-title: #d2a8ff;
+  --tok-constant: #79c0ff;
+  --tok-string: #a5d6ff;
+  --tok-built-in: #ffa657;
+  --tok-comment: #8b949e;
+  --tok-tag: #7ee787;
+  --tok-section: #1f6feb;
+  --tok-bullet: #f2cc60;
+}
+
+.theme-eye .markdown-body {
+  --code-bg: #d9e8d9;
+  --code-text: #2d4a2d;
+  --code-border: #a8d5b0;
+  --tok-keyword: #b03030;
+  --tok-title: #7a4ab0;
+  --tok-constant: #1a5fb4;
+  --tok-string: #1d6b3a;
+  --tok-built-in: #c46a1a;
+  --tok-comment: #5a7a5a;
+  --tok-tag: #2d7a2d;
+  --tok-section: #1a5fb4;
+  --tok-bullet: #8a6d1a;
+}
